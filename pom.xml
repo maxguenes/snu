@@ -1,57 +1,114 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.upe.web</groupId>
-  <artifactId>snu-web</artifactId>
-  <version>1.0.0</version>
-  <packaging>war</packaging>
-  
-  <properties>
-		<jdk.version>1.8</jdk.version>
-		<spring.version>4.3.2.RELEASE</spring.version>
-		<jstl.version>1.2</jstl.version>
-		<servletapi.version>3.1.0</servletapi.version>
-		<final.name>snu</final.name>
-	</properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.upe.web</groupId>
+    <artifactId>snu-web</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
 
-	<dependencies>
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
+        <spring.jpa.version>1.4.0.RELEASE</spring.jpa.version>
+        <jstl.version>1.2</jstl.version>
+        <servletapi.version>3.1.0</servletapi.version>
+        <final.name>snu</final.name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.security.version>4.0.1.RELEASE</spring.security.version>
+        <hibernate.version>5.2.2.Final</hibernate.version>
+    </properties>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+    <build>
+        <finalName>${final.name}</finalName>
+        <plugins>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-		</dependency>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
 
-		<!-- compile only, deployed container will provide this -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servletapi.version}</version>
-			<scope>provided</scope>
-		</dependency>
+        </plugins>
+    </build>
 
-	</dependencies>
+    <dependencies>
 
-	<build>
-		<finalName>${final.name}</finalName>
-		<plugins>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-				</configuration>
-			</plugin>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-		</plugins>
-	</build>
-  
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.jpa.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.192</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.4.7</version>
+        </dependency>
+
+        <!-- JPA Provider -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servletapi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
 </project>
