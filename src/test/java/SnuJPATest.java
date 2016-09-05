@@ -1,12 +1,14 @@
-import com.upe.snu.context.ApplicationContext;
 import com.upe.snu.context.DatabaseContext;
-import com.upe.snu.jpa.entity.EstudanteEntity;
-import com.upe.snu.jpa.entity.MateriaEntity;
-import com.upe.snu.jpa.entity.MatriculaEntity;
+import com.upe.snu.jpa.entity.Estudante;
+import com.upe.snu.jpa.entity.Materia;
+import com.upe.snu.jpa.entity.Matricula;
+import com.upe.snu.jpa.entity.Nota;
 import com.upe.snu.jpa.repository.EstudanteRepository;
 import com.upe.snu.jpa.repository.MateriaRepository;
 import com.upe.snu.jpa.repository.MatriculaRepository;
+import com.upe.snu.jpa.repository.NotaRepository;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,31 +38,46 @@ public class SnuJPATest {
     @Autowired
     private MatriculaRepository matriculaRepository;
 
+    @Autowired
+    private NotaRepository notaRepository;
+
 
     @Test
     @Transactional
     @Rollback(true)
     public void testRepository() throws Exception
     {
-        EstudanteEntity max = new EstudanteEntity();
+        Estudante max = new Estudante();
         max.setNome("Max Guenes");
 
         max = estudanteRepository.save(max);
 
         log.info(max);
 
-        MateriaEntity lpoo = new MateriaEntity();
+        Materia lpoo = new Materia();
 
         lpoo.setNome("LPOO");
 
         lpoo = materiaRepository.save(lpoo);
 
-        MatriculaEntity matricula = new MatriculaEntity();
+        Matricula matricula = new Matricula();
         matricula.setEstudante(max);
         matricula.setMateria(lpoo);
         matricula.setSemestre("2016.2");
 
         matricula = matriculaRepository.save(matricula);
 
+        Nota nota = new Nota();
+        nota.setNota(8.5);
+        nota.setComentario("Comentario da nota");
+        nota.setMatricula(matricula);
+
+        nota = notaRepository.save(nota);
+
+        nota = notaRepository.findOne(nota.getId());
+
+        matricula = matriculaRepository.findOne(matricula.getId());
+
+//        Assert.assertEquals(matricula.getNotas().size(), 1);
     }
 }

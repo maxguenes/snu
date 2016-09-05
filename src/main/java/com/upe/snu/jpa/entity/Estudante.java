@@ -7,34 +7,32 @@ import java.util.List;
  * Created by Max Guenes on 04/09/2016.
  */
 @Entity
-@Table(name="estudante")
-public class EstudanteEntity {
+public class Estudante {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-    private String nome;
-
-    @OneToMany
-    private List<MatriculaEntity> matriculas;
-
-    public EstudanteEntity() {}
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
+    private Long id;
 
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
+    private String nome;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+    public void setMatriculas(List<Matricula> matriculas) { this.matriculas = matriculas; }
+    private List<Matricula> matriculas;
 
     public String toString() {
         return String.format(

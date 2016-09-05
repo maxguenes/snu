@@ -7,31 +7,31 @@ import java.util.List;
  * Created by Max Guenes on 04/09/2016.
  */
 @Entity
-@Table(name="materia")
-public class MateriaEntity {
+public class Materia {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long getId() { return id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
     private Long id;
-    private String nome;
-
-    @OneToMany
-    private List<MatriculaEntity> matricula;
-
-    public MateriaEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
+    private String nome;
+
+    @OneToMany()
+    public List<Matricula> getMatricula() {
+        return matricula;
+    }
+    public void setMatricula(List<Matricula> matricula) { this.matricula = matricula; }
+    private List<Matricula> matricula;
+
 
     public String toString() {
         return String.format(

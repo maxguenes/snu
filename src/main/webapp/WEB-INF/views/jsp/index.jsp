@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Maven + Spring MVC + @JavaConfig</title>
+<title>Sistema de notas UPE</title>
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
 <spring:url value="/resources/core/css/bootstrap.min.css"
@@ -15,7 +15,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Sistema de notas UPE</a>
+			<a class="navbar-brand" href="<c:url value="/"/>">Sistema de notas UPE</a>
 		</div>
 	</div>
 </nav>
@@ -30,21 +30,15 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<h2>Heading</h2>
+			<h2>Estudantes</h2>
 			<p>
-				<a class="btn btn-default" href="#" role="button">View details</a>
+				<a class="btn btn-default" href="<c:url value="/estudante"/>" role="button">Estudantes</a>
 			</p>
 		</div>
 		<div class="col-md-4">
-			<h2>Heading</h2>
+			<h2>Mat&eacute;rias</h2>
 			<p>
-				<a class="btn btn-default" href="#" role="button">View details</a>
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>Heading</h2>
-			<p>
-				<a class="btn btn-default" href="#" role="button">View details</a>
+				<a class="btn btn-default" href="<c:url value="/materia"/>" role="button">Mat&eacute;rias</a>
 			</p>
 		</div>
 	</div>
@@ -52,7 +46,7 @@
 
 	<hr>
 	<footer>
-		<p>©Max&Alisson 2016</p>
+		<p>Max&Alisson 2016</p>
 	</footer>
 </div>
 
