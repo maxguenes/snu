@@ -33,6 +33,8 @@
         <tr>
             <th width="80">ID</th>
             <th width="120">Nome</th>
+            <th width="120">Historico</th>
+            <th width="120">Fazer Matricula</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
@@ -40,6 +42,8 @@
             <tr>
                 <td>${estudante.id}</td>
                 <td>${estudante.nome}</td>
+                <td><a href="<c:url value='/estudante/history/${estudante.id}' />">Historico</a></td>
+                <td><a href="<c:url value='/estudante/matricula/${estudante.id}' />">Matricular</a></td>
                 <td><a href="<c:url value='/estudante/edit/${estudante.id}' />">Edit</a></td>
                 <td><a href="<c:url value='/estudante/remove/${estudante.id}' />">Delete</a></td>
             </tr>
