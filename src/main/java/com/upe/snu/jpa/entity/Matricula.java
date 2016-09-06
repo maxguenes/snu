@@ -21,7 +21,7 @@ public class Matricula {
     private Long id;
 
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "matricula")
     public List<Nota> getNotas() {
         return notas;
     }
@@ -38,8 +38,8 @@ public class Matricula {
     private String semestre;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "estudante")
     public Estudante getEstudante() {
         return estudante;
     }
@@ -48,8 +48,8 @@ public class Matricula {
     }
     private Estudante estudante;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "materia")
     public Materia getMateria() {
         return materia;
     }

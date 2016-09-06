@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Max Guenes on 04/09/2016.
  */
-@Entity
+@Entity(name = "materia")
 public class Materia {
 
     @Id
@@ -25,7 +25,7 @@ public class Materia {
     }
     private String nome;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "materia")
     public List<Matricula> getMatricula() {
         return matricula;
     }

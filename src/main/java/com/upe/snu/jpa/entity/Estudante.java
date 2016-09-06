@@ -1,12 +1,16 @@
 package com.upe.snu.jpa.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Max Guenes on 04/09/2016.
  */
-@Entity
+@Entity(name = "estudante")
 public class Estudante {
 
     @Id
@@ -27,12 +31,12 @@ public class Estudante {
     }
     private String nome;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    public List<Matricula> getMatriculas() {
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "estudante")
+    public Set<Matricula> getMatriculas() {
         return matriculas;
     }
-    public void setMatriculas(List<Matricula> matriculas) { this.matriculas = matriculas; }
-    private List<Matricula> matriculas;
+    public void setMatriculas(Set<Matricula> matriculas) { this.matriculas = matriculas; }
+    private Set<Matricula> matriculas;
 
     public String toString() {
         return String.format(

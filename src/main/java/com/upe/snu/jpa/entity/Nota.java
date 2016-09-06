@@ -34,6 +34,7 @@ public class Nota {
     private String comentario;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "matricula")
     public Matricula getMatricula() {
         return matricula;
     }

@@ -3,9 +3,11 @@ package com.upe.snu.controller;
 import com.upe.snu.jpa.entity.Estudante;
 import com.upe.snu.jpa.entity.Materia;
 import com.upe.snu.jpa.entity.Matricula;
+import com.upe.snu.jpa.entity.Nota;
 import com.upe.snu.jpa.repository.EstudanteRepository;
 import com.upe.snu.jpa.repository.MateriaRepository;
 import com.upe.snu.jpa.repository.MatriculaRepository;
+import com.upe.snu.jpa.repository.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,9 @@ public class EstudanteController {
     @Autowired
     private MatriculaRepository matriculaRepository;
 
+    @Autowired
+    private NotaRepository notaRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("estudantesList", this.estudanteRepository.findAll());
@@ -42,6 +47,21 @@ public class EstudanteController {
 
         model.addAttribute("estudante", this.estudanteRepository.findOne(id));
         return "estudante/edit";
+    }
+
+    @RequestMapping(value = "nota/{id}", method = RequestMethod.GET)
+    public String notaEstudante(@PathVariable("id") long id, Model model) {
+
+        model.addAttribute("matricula", this.matriculaRepository.findOne(id));
+        return "estudante/nota";
+    }
+
+    @RequestMapping(value = "history/{id}", method = RequestMethod.GET)
+    public String historyEstudante(@PathVariable("id") long id, Model model) {
+
+        model.addAttribute("estudante", this.estudanteRepository.findOne(id));
+
+        return "estudante/history";
     }
 
     @RequestMapping(value = "matricula/{id}", method = RequestMethod.GET)
@@ -83,6 +103,23 @@ public class EstudanteController {
         model.addAttribute("estudantesList", this.estudanteRepository.findAll());
 
         return "estudante/index";
+    }
+
+    @RequestMapping(value= "/addNota", method = RequestMethod.POST)
+    public String addNota(@ModelAttribute("matricula") Matricula matricula,
+                               @ModelAttribute("nota") String nota,
+                               @ModelAttribute("comentario") String comentario, Model model){
+
+        Nota notaEnity = new Nota();
+        notaEnity.setNota(Double.valueOf(nota));
+        notaEnity.setComentario(comentario);
+        notaEnity.setMatricula(matricula);
+
+        notaRepository.save(notaEnity);
+
+        matricula = matriculaRepository.findOne(matricula.getId());
+
+        return historyEstudante(matricula.getEstudante().getId() ,model);
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
