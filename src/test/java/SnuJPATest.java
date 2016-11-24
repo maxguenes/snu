@@ -1,8 +1,8 @@
 import com.upe.snu.context.DatabaseContext;
-import com.upe.snu.jpa.entity.Estudante;
-import com.upe.snu.jpa.entity.Materia;
-import com.upe.snu.jpa.entity.Matricula;
-import com.upe.snu.jpa.entity.Nota;
+import com.upe.snu.jpa.entity.EstudanteEntity;
+import com.upe.snu.jpa.entity.MateriaEntity;
+import com.upe.snu.jpa.entity.MatriculaEntity;
+import com.upe.snu.jpa.entity.NotaEntity;
 import com.upe.snu.jpa.repository.EstudanteRepository;
 import com.upe.snu.jpa.repository.MateriaRepository;
 import com.upe.snu.jpa.repository.MatriculaRepository;
@@ -47,27 +47,27 @@ public class SnuJPATest {
     @Rollback(true)
     public void testRepository() throws Exception
     {
-        Estudante max = new Estudante();
+        EstudanteEntity max = new EstudanteEntity();
         max.setNome("Max Guenes");
 
         max = estudanteRepository.save(max);
 
         log.info(max);
 
-        Materia lpoo = new Materia();
+        MateriaEntity lpoo = new MateriaEntity();
 
         lpoo.setNome("LPOO");
 
         lpoo = materiaRepository.save(lpoo);
 
-        Matricula matricula = new Matricula();
+        MatriculaEntity matricula = new MatriculaEntity();
         matricula.setEstudante(max);
         matricula.setMateria(lpoo);
         matricula.setSemestre("2016.2");
 
         matricula = matriculaRepository.save(matricula);
 
-        Nota nota = new Nota();
+        NotaEntity nota = new NotaEntity();
         nota.setNota(8.5);
         nota.setComentario("Comentario da nota");
         nota.setMatricula(matricula);

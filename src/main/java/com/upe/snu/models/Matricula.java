@@ -1,32 +1,28 @@
-package com.upe.snu.jpa.entity;
+package com.upe.snu.models;
 
-import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-/**
- * Created by Max Guenes on 04/09/2016.
- */
-@Entity
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
+@JsonInclude(Include.NON_EMPTY)
 public class Matricula {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() { return id; }
+	public Long getId() { return id; }
     public void setId(Long id) {
         this.id = id;
     }
     private Long id;
 
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "matricula")
     public List<Nota> getNotas() {
         return notas;
     }
     public void setNotas(List<Nota> notas) { this.notas = notas; }
-    private List<Nota> notas = new ArrayList<>();
+    private List<Nota> notas = new ArrayList<Nota>();
 
 
     public String getSemestre() {
@@ -38,8 +34,6 @@ public class Matricula {
     private String semestre;
 
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "estudante")
     public Estudante getEstudante() {
         return estudante;
     }
@@ -48,8 +42,6 @@ public class Matricula {
     }
     private Estudante estudante;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "materia")
     public Materia getMateria() {
         return materia;
     }
@@ -59,4 +51,3 @@ public class Matricula {
     private Materia materia;
 
 }
-

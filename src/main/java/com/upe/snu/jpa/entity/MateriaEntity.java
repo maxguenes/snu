@@ -1,13 +1,20 @@
 package com.upe.snu.jpa.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.List;
 
 /**
  * Created by Max Guenes on 04/09/2016.
  */
+@JsonSerialize
+@JsonInclude(Include.NON_EMPTY)
 @Entity(name = "materia")
-public class Materia {
+public class MateriaEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -26,11 +33,11 @@ public class Materia {
     private String nome;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "materia")
-    public List<Matricula> getMatricula() {
+    public List<MatriculaEntity> getMatricula() {
         return matricula;
     }
-    public void setMatricula(List<Matricula> matricula) { this.matricula = matricula; }
-    private List<Matricula> matricula;
+    public void setMatricula(List<MatriculaEntity> matricula) { this.matricula = matricula; }
+    private List<MatriculaEntity> matricula;
 
 
     public String toString() {

@@ -2,12 +2,18 @@ package com.upe.snu.jpa.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * Created by Max Guenes on 04/09/2016.
  */
 
-@Entity
-public class Nota {
+@JsonSerialize
+@JsonInclude(Include.NON_EMPTY)
+@Entity(name="nota")
+public class NotaEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -35,10 +41,10 @@ public class Nota {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "matricula")
-    public Matricula getMatricula() {
+    public MatriculaEntity getMatricula() {
         return matricula;
     }
-    public void setMatricula(Matricula matricula) { this.matricula = matricula; }
-    private Matricula matricula;
+    public void setMatricula(MatriculaEntity matricula) { this.matricula = matricula; }
+    private MatriculaEntity matricula;
 
 }

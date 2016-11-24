@@ -1,20 +1,15 @@
-package com.upe.snu.jpa.entity;
+package com.upe.snu.models;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Max Guenes on 04/09/2016.
- */
-@Entity(name = "estudante")
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
+@JsonInclude(Include.NON_EMPTY)
 public class Estudante {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -31,7 +26,6 @@ public class Estudante {
     }
     private String nome;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "estudante")
     public Set<Matricula> getMatriculas() {
         return matriculas;
     }

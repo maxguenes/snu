@@ -6,6 +6,16 @@
 	<display-name>Sistema Notas UPE</display-name>
 	<description>Sistema de notas da Universidade de Pernambuco</description>
 
+
+	<filter>
+        <filter-name>multipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>multipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
 	<!-- For web context -->
 	<servlet>
 		<servlet-name>snu-dispatcher</servlet-name>

@@ -1,6 +1,6 @@
 package com.upe.snu.controller;
 
-import com.upe.snu.jpa.entity.Materia;
+import com.upe.snu.jpa.entity.MateriaEntity;
 import com.upe.snu.jpa.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,7 @@ public class MateriaController {
 
     //For add and update person both
     @RequestMapping(value= "/add", method = RequestMethod.POST)
-    public String addPerson(@ModelAttribute("materia") Materia materia, Model model){
+    public String addPerson(@ModelAttribute("materia") MateriaEntity materia, Model model){
         this.materiaRepository.save(materia);
         return index(model);
     }

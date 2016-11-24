@@ -1,9 +1,9 @@
 package com.upe.snu.controller;
 
-import com.upe.snu.jpa.entity.Estudante;
-import com.upe.snu.jpa.entity.Materia;
-import com.upe.snu.jpa.entity.Matricula;
-import com.upe.snu.jpa.entity.Nota;
+import com.upe.snu.jpa.entity.EstudanteEntity;
+import com.upe.snu.jpa.entity.MateriaEntity;
+import com.upe.snu.jpa.entity.MatriculaEntity;
+import com.upe.snu.jpa.entity.NotaEntity;
 import com.upe.snu.jpa.repository.EstudanteRepository;
 import com.upe.snu.jpa.repository.MateriaRepository;
 import com.upe.snu.jpa.repository.MatriculaRepository;
@@ -78,7 +78,7 @@ public class EstudanteController {
     }
 
     @RequestMapping(value= "/add", method = RequestMethod.POST)
-    public String addPerson(@ModelAttribute("estudante") Estudante estudante, Model model){
+    public String addPerson(@ModelAttribute("estudante") EstudanteEntity estudante, Model model){
         this.estudanteRepository.save(estudante);
 
         model.addAttribute("estudantesList", this.estudanteRepository.findAll());
@@ -87,13 +87,13 @@ public class EstudanteController {
     }
 
     @RequestMapping(value= "/addMatricula", method = RequestMethod.POST)
-    public String addMatricula(@ModelAttribute("estudante") Estudante estudante,
+    public String addMatricula(@ModelAttribute("estudante") EstudanteEntity estudante,
                                @ModelAttribute("semestre") String semestre,
                                @ModelAttribute("materia") String materiaId, Model model){
 
-        Materia materia = materiaRepository.findOne(Long.valueOf(materiaId));
+        MateriaEntity materia = materiaRepository.findOne(Long.valueOf(materiaId));
 
-        Matricula matricula = new Matricula();
+        MatriculaEntity matricula = new MatriculaEntity();
         matricula.setSemestre(semestre);
         matricula.setEstudante(estudante);
         matricula.setMateria(materia);
@@ -106,11 +106,11 @@ public class EstudanteController {
     }
 
     @RequestMapping(value= "/addNota", method = RequestMethod.POST)
-    public String addNota(@ModelAttribute("matricula") Matricula matricula,
+    public String addNota(@ModelAttribute("matricula") MatriculaEntity matricula,
                                @ModelAttribute("nota") String nota,
                                @ModelAttribute("comentario") String comentario, Model model){
 
-        Nota notaEnity = new Nota();
+        NotaEntity notaEnity = new NotaEntity();
         notaEnity.setNota(Double.valueOf(nota));
         notaEnity.setComentario(comentario);
         notaEnity.setMatricula(matricula);
