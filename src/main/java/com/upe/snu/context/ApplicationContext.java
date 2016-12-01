@@ -1,9 +1,6 @@
 package com.upe.snu.context;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,6 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan({"com.upe.snu"})
+@PropertySource("classpath:application.properties")
 @Import(DatabaseContext.class)
 @Order(1)
 public class ApplicationContext extends WebMvcConfigurerAdapter {

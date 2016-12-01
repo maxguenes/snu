@@ -1,4 +1,4 @@
-package com.upe.snu;
+package com.upe.snu.appliction;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
