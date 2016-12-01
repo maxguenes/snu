@@ -2,6 +2,7 @@ package com.upe.snu.controller.api;
 
 import com.upe.snu.jpa.search.repository.LivroRepository;
 import com.upe.snu.models.Livro;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,6 +53,16 @@ public class LivroAPI {
     	for(com.upe.snu.jpa.search.entity.Livro livro : this.livroRepository.findAll()){
     		targetCollection.add(convert(livro));
     	}
+        return targetCollection;
+    }
+
+    @RequestMapping(value="/search/{query}", method = RequestMethod.GET)
+    public @ResponseBody List<Livro> list(@PathVariable("query") String query) {
+        Iterable<com.upe.snu.jpa.search.entity.Livro> result = this.livroRepository.search(QueryBuilders.queryStringQuery(query));
+        List<Livro> targetCollection = new ArrayList<Livro>();
+        for(com.upe.snu.jpa.search.entity.Livro livro : result){
+            targetCollection.add(convert(livro));
+        }
         return targetCollection;
     }
 
