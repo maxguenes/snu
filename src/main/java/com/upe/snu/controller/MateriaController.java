@@ -1,7 +1,7 @@
 package com.upe.snu.controller;
 
-import com.upe.snu.jpa.entity.MateriaEntity;
-import com.upe.snu.jpa.repository.MateriaRepository;
+import com.upe.snu.jpa.database.entity.MateriaEntity;
+import com.upe.snu.jpa.database.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

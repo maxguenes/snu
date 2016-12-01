@@ -15,7 +15,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<c:url value="/"/>">Sistema de notas UPE</a>
+            <a class="navbar-brand" href="<c:url value="/" /> ">Sistema de notas UPE</a>
+        </div>
+        <div>
+            <form action="<c:url value='/logout' />" method="POST">
+                <input type="submit" value="Deslogar"/>
+            </form>
         </div>
     </div>
 </nav>
@@ -54,7 +59,7 @@
     </div>
     <hr>
     <footer>
-        <p>Max&Alisson 2016</p>
+        <p>Max Guenes 2016</p>
     </footer>
 </div>
 

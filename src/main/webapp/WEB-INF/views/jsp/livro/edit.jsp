@@ -33,19 +33,42 @@
 
 <div class="container">
 
-    <h3>Nova materia</h3>
+    <h3>Novo livro</h3>
 
-    <form id="formMateria" action="<c:url value="/materia/add"/>" method="POST">
+    <form id="formlivro" action="<c:url value="/livro/add"/>" method="POST">
         <table class="tg">
             <tr>
-                <td><span>Nome da materia:</span></td>
-                <td><input type="text" name="nome"/></td>
+                <td><span>ID:</span></td>
+                <td>
+                    <input type="hidden" name="id" value="${livro.id}"/>
+                    <span>${livro.id}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Nome:</span></td>
+                <td><input type="text" name="nome" value="${livro.nome}"/></td>
+            </tr>
+            <tr>
+                <td><span>C&oacute;digo:</span></td>
+                <td><input type="text" name="codigo" value="${livro.codigo}"/></td>
+            </tr>
+            <tr>
+                <td><span>Autor:</span></td>
+                <td><input type="text" name="autor" value="${livro.autor}"/></td>
+            </tr>
+            <tr>
+                <td><span>Ano:</span></td>
+                <td><input type="text" name="ano" value="${livro.ano}"/></td>
+            </tr>
+            <tr>
+                <td><span>Editora:</span></td>
+                <td><input type="text" name="editora" value="${livro.editora}"/></td>
             </tr>
         </table>
         <div class="row">
             <div class="col-md-4">
                 <input type="submit" value="Salvar" />
-                <input type="button" value="Voltar" onclick="location.href = '<c:url value="/materia"/>';"/>
+                <input type="button" value="Voltar" onclick="location.href = '<c:url value="/livro"/>';"/>
             </div>
         </div>
     </form>

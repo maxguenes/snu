@@ -1,13 +1,13 @@
 package com.upe.snu.controller;
 
-import com.upe.snu.jpa.entity.EstudanteEntity;
-import com.upe.snu.jpa.entity.MateriaEntity;
-import com.upe.snu.jpa.entity.MatriculaEntity;
-import com.upe.snu.jpa.entity.NotaEntity;
-import com.upe.snu.jpa.repository.EstudanteRepository;
-import com.upe.snu.jpa.repository.MateriaRepository;
-import com.upe.snu.jpa.repository.MatriculaRepository;
-import com.upe.snu.jpa.repository.NotaRepository;
+import com.upe.snu.jpa.database.entity.EstudanteEntity;
+import com.upe.snu.jpa.database.entity.MateriaEntity;
+import com.upe.snu.jpa.database.entity.MatriculaEntity;
+import com.upe.snu.jpa.database.entity.NotaEntity;
+import com.upe.snu.jpa.database.repository.EstudanteRepository;
+import com.upe.snu.jpa.database.repository.MateriaRepository;
+import com.upe.snu.jpa.database.repository.MatriculaRepository;
+import com.upe.snu.jpa.database.repository.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

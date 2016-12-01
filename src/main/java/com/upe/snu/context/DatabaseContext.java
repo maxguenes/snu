@@ -6,10 +6,11 @@ package com.upe.snu.context;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,24 +18,24 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan({"com.upe.snu.jpa"})
-@EnableJpaRepositories(basePackages = {
-        "com.upe.snu.jpa.repository"
-})
+@EnableJpaRepositories(
+        entityManagerFactoryRef = "databaseEntityManagerFactory",
+        transactionManagerRef = "databaseTransactionManager",
+        basePackages = {"com.upe.snu.jpa.database.repository"})
 @EnableTransactionManagement
+@Order(2)
 public class DatabaseContext {
 
-    @Configuration
-    @PropertySource("classpath:application.properties")
-    static class ApplicationProperties {}
+    @Autowired
+    private Environment env;
 
     @Bean(destroyMethod = "close")
-    DataSource dataSource(Environment env) {
+    public DataSource databaseDataSource() {
         HikariConfig dataSourceConfig = new HikariConfig();
         dataSourceConfig.setDriverClassName(env.getRequiredProperty("db.driver"));
         dataSourceConfig.setJdbcUrl(env.getRequiredProperty("db.url"));
@@ -45,12 +46,11 @@ public class DatabaseContext {
     }
 
     @Bean
-    LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
-                                                                Environment env) {
+    public LocalContainerEntityManagerFactoryBean databaseEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean.setDataSource(databaseDataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("com.upe.snu.jpa.entity");
+        entityManagerFactoryBean.setPackagesToScan("com.upe.snu.jpa.database.entity");
 
         Properties jpaProperties = new Properties();
 
@@ -78,9 +78,9 @@ public class DatabaseContext {
     }
 
     @Bean
-    JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager databaseTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        transactionManager.setEntityManagerFactory(databaseEntityManagerFactory().getObject());
         return transactionManager;
     }
 }

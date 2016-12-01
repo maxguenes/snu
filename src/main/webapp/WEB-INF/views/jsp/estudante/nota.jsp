@@ -18,6 +18,11 @@
             <a class="navbar-brand" href="<c:url value="/"/>">Sistema de notas UPE</a>
         </div>
     </div>
+    <div>
+        <form action="<c:url value='/logout' />" method="POST">
+            <input type="submit" value="Deslogar"/>
+        </form>
+    </div>
 </nav>
 
 <div class="jumbotron">
@@ -73,7 +78,7 @@
     </form>
     <hr>
     <footer>
-        <p>Max&Alisson 2016</p>
+        <p>Max Guenes 2016</p>
     </footer>
 </div>
 

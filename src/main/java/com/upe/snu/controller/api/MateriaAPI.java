@@ -1,4 +1,4 @@
-package com.upe.snu.controller;
+package com.upe.snu.controller.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.upe.snu.jpa.entity.MateriaEntity;
-import com.upe.snu.jpa.repository.MateriaRepository;
+import com.upe.snu.jpa.database.entity.MateriaEntity;
+import com.upe.snu.jpa.database.repository.MateriaRepository;
 import com.upe.snu.models.Materia;
 
 /**
  * Created by Max Guenes on 04/09/2016.
  */
 @Controller
-@RequestMapping("/android/materia")
-public class MateriaAndroidController {
+@RequestMapping("/api/materia")
+public class MateriaAPI {
 
 	@Autowired
 	private MateriaRepository materiaRepository;
@@ -66,7 +66,7 @@ public class MateriaAndroidController {
     }
 	
 	@ResponseBody
-	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Materia addPerson(@RequestBody Materia materia) {
 		return convert(this.materiaRepository.save(convert(materia)));
 	}

@@ -32,23 +32,50 @@
 </div>
 
 <div class="container">
+    <h3>Livros</h3>
 
-    <h3>Nova materia</h3>
-
-    <form id="formMateria" action="<c:url value="/materia/add"/>" method="POST">
+    <form id="formlivro" action="<c:url value="/livro/search"/>" method="POST">
         <table class="tg">
             <tr>
-                <td><span>Nome da materia:</span></td>
-                <td><input type="text" name="nome"/></td>
+                <td><span>Filtro:</span></td>
+                <td><input type="text" name="query" value="${query}"/></td>
             </tr>
+            <c:if test="${not empty query}">
+                <tr>
+                    <td><span>Filtrado por ${query}</span></td>
+                </tr>
+            </c:if>
         </table>
-        <div class="row">
-            <div class="col-md-4">
-                <input type="submit" value="Salvar" />
-                <input type="button" value="Voltar" onclick="location.href = '<c:url value="/materia"/>';"/>
-            </div>
-        </div>
     </form>
+    <table class="tg">
+        <tr>
+            <th width="80">Codigo</th>
+            <th width="120">Nome</th>
+            <th width="120">Autor</th>
+            <th width="120">Ano</th>
+            <th width="120">Editora</th>
+            <th width="60">Edit</th>
+            <th width="60">Delete</th>
+        </tr>
+        <c:forEach items="${livroList}" var="livro">
+            <tr>
+                <td>${livro.codigo}</td>
+                <td>${livro.nome}</td>
+                <td>${livro.autor}</td>
+                <td>${livro.ano}</td>
+                <td>${livro.editora}</td>
+                <td><a href="<c:url value='/livro/edit/${livro.id}' />">Edit</a></td>
+                <td><a href="<c:url value='/livro/remove/${livro.id}' />">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                <a class="btn btn-default" href="<c:url value="/livro/new"/>" role="button">Adicionar livro</a>
+            </p>
+        </div>
+    </div>
     <hr>
     <footer>
         <p>Max Guenes 2016</p>

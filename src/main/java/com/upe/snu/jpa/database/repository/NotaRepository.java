@@ -1,6 +1,6 @@
-package com.upe.snu.jpa.repository;
+package com.upe.snu.jpa.database.repository;
 
-import com.upe.snu.jpa.entity.NotaEntity;
+import com.upe.snu.jpa.database.entity.NotaEntity;
 import org.springframework.data.repository.CrudRepository;
 
 /**

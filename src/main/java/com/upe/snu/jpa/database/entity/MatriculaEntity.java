@@ -1,4 +1,4 @@
-package com.upe.snu.jpa.entity;
+package com.upe.snu.jpa.database.entity;
 
 import java.util.ArrayList;
 import java.util.List;

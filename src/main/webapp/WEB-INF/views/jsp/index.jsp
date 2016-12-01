@@ -41,12 +41,18 @@
 				<a class="btn btn-default" href="<c:url value="/materia"/>" role="button">Mat&eacute;rias</a>
 			</p>
 		</div>
+		<div class="col-md-4">
+			<h2>Livros</h2>
+			<p>
+				<a class="btn btn-default" href="<c:url value="/livro"/>" role="button">Livros</a>
+			</p>
+		</div>
 	</div>
 
 
 	<hr>
 	<footer>
-		<p>Max&Alisson 2016</p>
+		<p>Max Guenes 2016</p>
 	</footer>
 </div>
 

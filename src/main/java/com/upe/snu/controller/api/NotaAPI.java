@@ -1,4 +1,4 @@
-package com.upe.snu.controller;
+package com.upe.snu.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.upe.snu.jpa.entity.MatriculaEntity;
-import com.upe.snu.jpa.entity.NotaEntity;
-import com.upe.snu.jpa.repository.MatriculaRepository;
-import com.upe.snu.jpa.repository.NotaRepository;
+import com.upe.snu.jpa.database.entity.MatriculaEntity;
+import com.upe.snu.jpa.database.entity.NotaEntity;
+import com.upe.snu.jpa.database.repository.MatriculaRepository;
+import com.upe.snu.jpa.database.repository.NotaRepository;
 import com.upe.snu.models.Nota;
 
 /**
  * Created by Max Guenes on 04/09/2016.
  */
 @Controller
-@RequestMapping("/android/nota")
-public class NotaAndroidController {
+@RequestMapping("/api/nota")
+public class NotaAPI {
 
 	@Autowired
 	private NotaRepository notaRepository;

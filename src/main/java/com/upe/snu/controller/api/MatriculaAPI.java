@@ -1,4 +1,4 @@
-package com.upe.snu.controller;
+package com.upe.snu.controller.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.upe.snu.jpa.entity.EstudanteEntity;
-import com.upe.snu.jpa.entity.MateriaEntity;
-import com.upe.snu.jpa.entity.MatriculaEntity;
-import com.upe.snu.jpa.entity.NotaEntity;
-import com.upe.snu.jpa.repository.EstudanteRepository;
-import com.upe.snu.jpa.repository.MateriaRepository;
-import com.upe.snu.jpa.repository.MatriculaRepository;
+import com.upe.snu.jpa.database.entity.EstudanteEntity;
+import com.upe.snu.jpa.database.entity.MateriaEntity;
+import com.upe.snu.jpa.database.entity.MatriculaEntity;
+import com.upe.snu.jpa.database.entity.NotaEntity;
+import com.upe.snu.jpa.database.repository.EstudanteRepository;
+import com.upe.snu.jpa.database.repository.MateriaRepository;
+import com.upe.snu.jpa.database.repository.MatriculaRepository;
 import com.upe.snu.models.Materia;
 import com.upe.snu.models.Matricula;
 import com.upe.snu.models.Nota;
@@ -27,8 +27,8 @@ import com.upe.snu.models.Nota;
  * Created by Max Guenes on 04/09/2016.
  */
 @Controller
-@RequestMapping("/android/matricula")
-public class MatriculaAndroidController {
+@RequestMapping("/api/matricula")
+public class MatriculaAPI {
 
     @Autowired
     private MatriculaRepository matriculaRepository;
@@ -53,11 +53,11 @@ public class MatriculaAndroidController {
     	List<Nota> notas = new ArrayList<>();
     	if(m.getNotas()!=null){
 			for(NotaEntity notaEntity : m.getNotas()){
-				notas.add(NotaAndroidController.convert(notaEntity));
+				notas.add(NotaAPI.convert(notaEntity));
 			}
     	}
     	
-    	Materia materia = MateriaAndroidController.convert(m.getMateria());
+    	Materia materia = MateriaAPI.convert(m.getMateria());
 		result.setMateria(materia);
 		result.setNotas(notas);
 		

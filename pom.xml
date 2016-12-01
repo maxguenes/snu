@@ -1,126 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.upe.web</groupId>
-    <artifactId>snu-web</artifactId>
-    <version>1.0.0</version>
-    <packaging>war</packaging>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <properties>
-        <jdk.version>1.8</jdk.version>
-        <spring.version>4.3.2.RELEASE</spring.version>
-        <spring.jpa.version>1.4.0.RELEASE</spring.jpa.version>
-        <jstl.version>1.2</jstl.version>
-        <servletapi.version>3.1.0</servletapi.version>
-        <final.name>snu</final.name>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.security.version>4.0.1.RELEASE</spring.security.version>
-        <hibernate.version>5.2.2.Final</hibernate.version>
-    </properties>
+	<groupId>com.maxguenes.samples</groupId>
+	<artifactId>demo-trix</artifactId>
+	<version>1.0.0</version>
+    <packaging>jar</packaging>
 
-    <build>
-        <finalName>${final.name}</finalName>
-        <plugins>
+	<name>demo-trix</name>
+	<description>Demo project for Trix </description>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
-            </plugin>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from com.upe.snu.repository -->
+	</parent>
 
-        </plugins>
-    </build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<jstl.version>1.2</jstl.version>
+		<servletapi.version>3.1.0</servletapi.version>
+        <tomcat.version>8.0.32</tomcat.version>
+	</properties>
 
-    <dependencies>
-
+	<dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring.jpa.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jersey</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
+
+            <groupId>org.apache.tomcat.embed</groupId>
+
+            <artifactId>tomcat-embed-core</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.apache.tomcat.embed</groupId>
+
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.apache.tomcat.embed</groupId>
+
+            <artifactId>tomcat-embed-jasper</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.apache.tomcat</groupId>
+
+            <artifactId>tomcat-jasper</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.apache.tomcat</groupId>
+
+            <artifactId>tomcat-jasper-el</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.apache.tomcat</groupId>
+
+            <artifactId>tomcat-jsp-api</artifactId>
+
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>jstl</groupId>
+
             <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
+
+            <version>1.2</version>
+
         </dependency>
 
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.192</version>
+
+            <groupId>javax.servlet</groupId>
+
+            <artifactId>javax.servlet-api</artifactId>
+
+            <version>3.0.1</version>
+
         </dependency>
 
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>2.4.7</version>
+
+            <groupId>org.eclipse.jdt.core.compiler</groupId>
+
+            <artifactId>ecj</artifactId>
+
+            <version>4.5.1</version>
+
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
-        
-        <dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>2.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.3</version>
 		</dependency>
 
-        <!-- JPA Provider -->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-entitymanager</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servletapi.version}</version>
-            <scope>provided</scope>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>4.1.0</version>
         </dependency>
 
-    </dependencies>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 
 </project>

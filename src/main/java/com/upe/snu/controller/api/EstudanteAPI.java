@@ -1,4 +1,4 @@
-package com.upe.snu.controller;
+package com.upe.snu.controller.api;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.upe.snu.jpa.entity.EstudanteEntity;
-import com.upe.snu.jpa.entity.MatriculaEntity;
-import com.upe.snu.jpa.repository.EstudanteRepository;
+import com.upe.snu.jpa.database.entity.EstudanteEntity;
+import com.upe.snu.jpa.database.entity.MatriculaEntity;
+import com.upe.snu.jpa.database.repository.EstudanteRepository;
 import com.upe.snu.models.Estudante;
 import com.upe.snu.models.Matricula;
 
@@ -26,8 +26,8 @@ import com.upe.snu.models.Matricula;
  * Created by Max Guenes on 04/09/2016.
  */
 @Controller
-@RequestMapping("/android/estudante")
-public class EstudanteAndroidController {
+@RequestMapping("/api/estudante")
+public class EstudanteAPI {
 
     @Autowired
     private EstudanteRepository estudanteRepository;
@@ -40,7 +40,7 @@ public class EstudanteAndroidController {
     	Set<Matricula> matriculas = new HashSet<>();
     	if(e.getMatriculas()!=null){
 	    	for(MatriculaEntity m : e.getMatriculas()){
-	    		matriculas.add(MatriculaAndroidController.convert(m));
+	    		matriculas.add(MatriculaAPI.convert(m));
 	    	}
     	}
     	result.setMatriculas(matriculas);
@@ -78,7 +78,7 @@ public class EstudanteAndroidController {
     }
 
     @ResponseBody
-    @RequestMapping(value= "/add", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value= "/save", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
     public Estudante addPerson(@RequestBody Estudante estudante){
         return convert(this.estudanteRepository.save(convert(estudante)));
     }
